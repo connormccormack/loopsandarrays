@@ -38,3 +38,16 @@ const min = (numbers) => {
   return minimum;
 }
 
+
+function average(numbers) {
+  // make a sum variable
+  let sum = 0;
+  // add each value to sum
+  numbers.forEach(number => sum += number)
+  // divide sum by numbers.length
+  return (sum/numbers.length);
+}
+const myArray = [1,3,15,4000];
+console.log(average(myArray));
+
+
