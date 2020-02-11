@@ -49,5 +49,5 @@ function average(numbers) {
 }
 const myArray = [1,3,15,4000];
 console.log(average(myArray));
-
+  
 
