@@ -1,4 +1,7 @@
 'use strict';
+
+// Make Student Report:
+
 function makeStudentReport(data) {
   const stringArray = [];
   
@@ -18,6 +21,8 @@ const students = [
 ];
 
 // console.log(makeStudentReport(students));
+
+// Enroll In Summer School:
 
 const studentData = [
   {
@@ -46,15 +51,16 @@ function enrollInSummerSchool(students) {
     };
   });
 }
-
 // console.log(enrollInSummerSchool(studentData));
 // console.log(studentData);
+
+// Find by ID:
+
 const scratchData = [
   { id: 22, foo: 'bar' },
   { id: 28, foo: 'bizz' },
   { id: 19, foo: 'bazz' },
 ];
-
 
 function findById(items, idNum) {
   // check each element of the array against id number
@@ -68,7 +74,7 @@ function findById(items, idNum) {
 // console.log(findById(scratchData, 28));
 
 
-
+// Validate Object Keys:
 
 // running the function with `objectA` and `expectedKeys`
 // should return `true`
