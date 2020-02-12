@@ -199,7 +199,7 @@ function printWorkers(workerArr) {
 }
 
 // Problems
-// 1. add a boss key to everyone but tom
+//  add a boss key to everyone but tom
 function addBoss(workerArr) {
   const bossGuy = workerArr.find(worker => worker.jobTitle === 'Owner');
   // console.log(bossGuy);
@@ -214,3 +214,88 @@ function addBoss(workerArr) {
 addBoss(workers);
 printWorkers(workers);
 
+// 6. Cracking the Code
+
+// const decode = (word) => {
+//   let secret = '';
+//   if (word[0] === 'a') {
+//     secret += word[1];
+//   } else if (word[0] === 'b') {
+//     secret += word[2];
+//   } else if (word[0] === 'c') {
+//     secret += word[3];
+//   } else if (word[0] === 'd') {
+//     secret += word[4];
+//   }
+//   return secret;
+// };
+// console.log(decode('craft'));
+
+const cipher = {
+    a: 2,
+    b: 3,
+    c: 4,
+    d: 5
+}
+
+function decode(word) {
+  // take first letter of word and see if it has a match in key values of cipher
+  if (cipher[word[0]]) {
+    return word[cipher[word[0]]-1]
+  } else {
+    return ' ';
+  }
+  // if no match, return space
+}
+
+function decodeWords(string) {
+  // initialize string variable called decodedMessage
+  let decodedMessage = '';
+  // split string into an array of words
+  const words = string.split(' ');
+  // pass each word into decode function
+  words.forEach(word => {
+    decodedMessage += decode(word);
+  })
+    // add each return value of decode function to decodedMessage
+
+  // return decodedMessage
+  return decodedMessage
+}
+
+
+console.log(decodeWords('craft block argon meter bells brown croon droop'));
+
+// 7 Factory Functions with LOTR
+
+const createCharacter = (name, nickname, race, origin, attack, defense ) => {
+  return { 
+    name, 
+    nickname, 
+    race, 
+    origin, 
+    attack, 
+    defense,
+    describe: function() {
+      return (`"${this.name} is a ${this.race} from ${origin}"`);
+    evaluateFight: function(character) {
+      return `"Your opponent takes ${this.attack - character.defense} damage and you recieve ${this.defense - character.attack}"`;
+    }
+  };
+};
+
+
+let characters = [createCharacter('Gandalf the White', 'gandalf', 'wizard', 'middle earth', 10, 6), createCharacter('Bilbo baggins', 'bilbo', 'hobbit', 'the shire', 2, 1), createCharacter('Frodo baggins', 'frodo', 'hobbit', 'the shire', 3, 2),createCharacter('Aragorn son of Arathorn', 'aragorn', 'man', 'dunnedain', 6, 8), createCharacter('Legolas', 'legolas', 'elf', 'woodlan realm', 8, 5), createCharacter('Arwen Undomiel', 'Arwen', 'Half-elf', 'rivendell', 2, 1)];
+
+console.log(characters);
+
+const badAss = characters.find(({nickName}) => nickName === 'aragorn');
+console.log(badAss);
+
+console.log(badAss.describe());
+
+const newArr = characters.filter(({race}) => race === 'hobbit');
+console.log(newArr);
+
+const newArr2 = characters.filter(({attack}) => attack > 5);
+console.log(newArr2);
