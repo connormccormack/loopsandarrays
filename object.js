@@ -66,6 +66,6 @@ function keyDeleter(obj) {
   return obj;
 }
 
-console.log(keyDeleter(sampleObj));
+// console.log(keyDeleter(sampleObj));
 
 

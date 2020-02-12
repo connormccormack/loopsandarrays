@@ -68,6 +68,8 @@ function findById(items, idNum) {
 // console.log(findById(scratchData, 28));
 
 
+
+
 // running the function with `objectA` and `expectedKeys`
 // should return `true`
 const objectA = {
@@ -94,13 +96,17 @@ function validateKeys(object, expectedKeys) {
   const newExpectedKeys = [...expectedKeys];
   newKeys.sort();
   newExpectedKeys.sort();
+  // let equalKeys = true;
+  if (newKeys.length !== newExpectedKeys) {
+    return false;
+  }
   for (let i = 0; i < newKeys.length; i++) {
     if (newKeys[i] !== newExpectedKeys[i]) {
       return false;
     } 
-   };
-   return true;
   }
+  return true;
+}
   
 
 console.log(validateKeys(objectB, expectedKeys));
