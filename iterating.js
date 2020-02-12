@@ -19,8 +19,8 @@ const students = [
   {name: 'AD', grade: 'A'},
   {name: 'Some rando', grade: 'F'}
 ];
-
 // console.log(makeStudentReport(students));
+
 
 // Enroll In Summer School:
 
@@ -54,6 +54,7 @@ function enrollInSummerSchool(students) {
 // console.log(enrollInSummerSchool(studentData));
 // console.log(studentData);
 
+
 // Find by ID:
 
 const scratchData = [
@@ -70,7 +71,6 @@ function findById(items, idNum) {
   return theItem[0];
 
 }
-
 // console.log(findById(scratchData, 28));
 
 
@@ -103,7 +103,7 @@ function validateKeys(object, expectedKeys) {
   newKeys.sort();
   newExpectedKeys.sort();
   // let equalKeys = true;
-  if (newKeys.length !== newExpectedKeys) {
+  if (newKeys.length !== newExpectedKeys.length) {
     return false;
   }
   for (let i = 0; i < newKeys.length; i++) {
@@ -112,7 +112,105 @@ function validateKeys(object, expectedKeys) {
     } 
   }
   return true;
-}
-  
+} 
+// console.log(validateKeys(objectB, expectedKeys));
 
-console.log(validateKeys(objectB, expectedKeys));
+
+// 1. Object Initializers and Methods:
+const loaf = {
+  flour: 300, 
+  water: 210, 
+  hydration() {
+    return this.water / this.flour * 100;
+  }
+};
+// console.log(loaf.flour, loaf.water);
+// console.log(loaf.hydration());
+
+
+// 2. Iterating Over an Object's Properties:
+
+const myObj = {
+  foo: 'Manchu',
+  bar: 'stool',
+  fum: 56,
+  quux: 'What the',
+  spam: 'musubi'
+};
+
+for (const property in myObj) {
+  // console.log(`${property}: ${myObj[property]}`);
+}
+
+
+// 3. Arrays in Objects:
+
+const hobbitLifestyles = {
+  meal: ['breakfast', 'second breakfast', 'elevenses', 'lunch', 'afternoon tea', 'dinner', 'supper']
+};
+
+// console.log(hobbitLifestyles.meal[3]);
+
+
+// 4. Array of Objects:
+
+// const tom = {name: 'Tom', jobTitle: 'Nurse'};
+// const steve = {name: 'Steve', jobTitle: 'School Teacher'};
+// const jenna = {name: 'Jenna', jobTitle: 'Fireman'};
+// const gemma = {name: 'Gemma', jobTitle: 'Cook'};
+
+// const workers = [];
+// workers.push(tom);
+// workers.push(steve);
+// workers.push(jenna);
+// workers.push(gemma);
+
+// console.log(workers);
+
+// function printWorkers(workerArr) {
+//   workerArr.forEach(worker => console.log((`${worker.name}: ${worker.jobTitle}`)));
+// }
+
+// printWorkers(workers);
+
+// 5. Properties that aren't there:
+
+const tom = {name: 'Tom', jobTitle: 'Owner'};
+const steve = {name: 'Steve', jobTitle: 'School Teacher'};
+const jenna = {name: 'Jenna', jobTitle: 'Fireman'};
+const gemma = {name: 'Gemma', jobTitle: 'Cook'};
+
+const workers = [];
+workers.push(tom);
+workers.push(steve);
+workers.push(jenna);
+workers.push(gemma);
+
+// console.log(workers);
+
+function printWorkers(workerArr) {
+  workerArr.forEach(worker => {
+    if(worker.boss) {
+      console.log((`${worker.jobTitle} ${worker.name} reports to ${worker.boss}`));
+    } else {
+      console.log((`${worker.jobTitle} ${worker.name} doesn't report to anybody.`));
+    }
+  });
+}
+
+// Problems
+// 1. add a boss key to everyone but tom
+function addBoss(workerArr) {
+  const bossGuy = workerArr.find(worker => worker.jobTitle === 'Owner');
+  // console.log(bossGuy);
+  
+  workerArr.forEach(worker => {
+    if(worker.jobTitle !== 'Owner') {
+      worker.boss = bossGuy.name;
+    }
+  });
+}
+
+addBoss(workers);
+printWorkers(workers);
+
