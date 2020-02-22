@@ -262,13 +262,12 @@ function decodeWords(string) {
   // return decodedMessage
   return decodedMessage
 }
-
-
 console.log(decodeWords('craft block argon meter bells brown croon droop'));
+
 
 // 7 Factory Functions with LOTR
 
-const createCharacter = (name, nickname, race, origin, attack, defense ) => {
+function createCharacter(name, nickname, race, origin, attack, defense) {
   return { 
     name, 
     nickname, 
@@ -276,26 +275,31 @@ const createCharacter = (name, nickname, race, origin, attack, defense ) => {
     origin, 
     attack, 
     defense,
-    describe: function() {
-      return (`"${this.name} is a ${this.race} from ${origin}"`);
-    evaluateFight: function(character) {
-      return `"Your opponent takes ${this.attack - character.defense} damage and you recieve ${this.defense - character.attack}"`;
+    describe() {
+      return (`${this.name} is a ${this.race} from ${this.origin}.`);
+    },
+    evaluateFight(character) {
+      let opponentDamage, yourDamage;
+      this.attack > character.defense ? opponentDamage = this.attack - character.defense : opponentDamage = 0;
+      character.attack > this.defense ? yourDamage = character.attack - this.defense : yourDamage = 0;
+      
+      return `Your opponent takes ${opponentDamage} and you receive ${yourDamage} damage.`
     }
   };
-};
+}
 
+const characters = [
+  createCharacter('Gandalf the White', 'gandalf', 'Wizard', 'Middle Earth', 10, 6),
+  createCharacter('Bilbo Baggins', 'bilbo', 'Hobbit', 'The Shire', 2, 1),
+  createCharacter('Frodo Baggins', 'frodo', 'Hobbit', 'The Shire', 3, 2),
+  createCharacter('Aragorn son of Arathorn', 'aragorn', 'Man', 'Dunnedain', 6 , 8),
+  createCharacter('Legolas', 'legolas', 'Elf', 'Woodland Realm', 8, 5)
+];
 
-let characters = [createCharacter('Gandalf the White', 'gandalf', 'wizard', 'middle earth', 10, 6), createCharacter('Bilbo baggins', 'bilbo', 'hobbit', 'the shire', 2, 1), createCharacter('Frodo baggins', 'frodo', 'hobbit', 'the shire', 3, 2),createCharacter('Aragorn son of Arathorn', 'aragorn', 'man', 'dunnedain', 6, 8), createCharacter('Legolas', 'legolas', 'elf', 'woodlan realm', 8, 5), createCharacter('Arwen Undomiel', 'Arwen', 'Half-elf', 'rivendell', 2, 1)];
+characters.push(createCharacter('Arwen Undomiel', 'arwen', 'Half-Elf', 'Rivendell', 11, 7));
 
-console.log(characters);
+const aragornDescription = characters.find(char => char.nickname === 'aragorn').describe();
 
-const badAss = characters.find(({nickName}) => nickName === 'aragorn');
-console.log(badAss);
+let hobbitses = characters.filter(char => char.race === 'Hobbit');
 
-console.log(badAss.describe());
-
-const newArr = characters.filter(({race}) => race === 'hobbit');
-console.log(newArr);
-
-const newArr2 = characters.filter(({attack}) => attack > 5);
-console.log(newArr2);
+let strongCharacters = characters.filter(char => char.attack > 5);
